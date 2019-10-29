@@ -24,7 +24,12 @@ code {
 
 #rock {
   border: 0;
-width: 150px;
-height: 150px;
-  background: url(http://upload.wikimedia.org/wikipedia/commons/7/72/DirkvdM_rocks.jpg) no-repeat;
-  }
+  /* width: 150px;
+  height: 150px; */
+  background: url(https://img.freepik.com/free-vector/triangle-wolf-design_23-2147495369.jpg?size=338&ext=jpg) no-repeat;
+} 
+
+#nameItem:hover {
+  background-color: #fff !important;
+  text-decoration: none;
+}

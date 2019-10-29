@@ -1,7 +1,5 @@
 import React from 'react';
 import { MapModel } from './mapModel'
-import Nav from './nav';
-import pandaIcon from './pandaIcon.png'
 
 class MapPage extends React.Component {
 
@@ -17,9 +15,14 @@ class MapPage extends React.Component {
                     {/* <img src={pandaIcon} class="rounded-circle" alt="Cinque Terre" width="35" height="35" /> */}
                     {/* </button> */}
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button">Action</button>
-                        <button class="dropdown-item" type="button">Another action</button>
-                        <button class="dropdown-item" type="button">Something else here</button>
+                        <p id='nameItem' class="dropdown-item">
+                            Firstname Lastname <br /> <small>login@gmail.com</small>
+                        </p>
+
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" type="button" onClick={this.props.onSignOut}>
+                            Sign out
+                        </button>
                     </div>
                 </div>
 

@@ -3,17 +3,28 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect,
   useHistory,
   useLocation
 } from "react-router-dom";
-import LoginPage from './login/loginPage'
-import MapPage from './map/mapPage'
+import LoginPage from './components/login/loginPage'
+import MapPage from './components/map/mapPage'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from './reducers'
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './sagas'
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+sagaMiddleware.run(rootSaga)
 
 function App() {
   return (
-<AuthExample />
+    <Provider store={store}>
+      <AuthExample />
+    </Provider>
   );
 }
 
@@ -81,20 +92,23 @@ function PrivateRoute({ children, ...rest }) {
         fakeAuth.isAuthenticated ? (
           children
         ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location }
-            }}
-          />
-        )
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
+          )
       }
     />
   );
 }
 
 function ProtectedPage() {
-  return <MapPage />
+  let history = useHistory();
+  return <MapPage onSignOut={() => {
+    fakeAuth.signout(() => history.push("/"));
+  }} />
 }
 
 function LoginPage1() {
@@ -112,6 +126,6 @@ function LoginPage1() {
   };
 
   return (
-    <LoginPage onLogin={login}/>
+    <LoginPage onLogin={login} />
   );
 }

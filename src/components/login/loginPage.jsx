@@ -1,25 +1,30 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { requestSignIn, cancelAuthFailure } from '../../actions/auth'
 
 class LoginPage extends React.Component {
 
-    state = {
-        openErrorAlert: false
+    componentDidMount() {
+        console.log(this.props)
+        this.props.signIn()
     }
 
     render() {
+
+        const { closeAuthError, authError } = this.props
+
         return (
             <div className='vw-100 d-flex justify-content-center'>
                 <div className='row m-4' style={{ maxWidth: 400 }}>
 
                     <div className='col-12'>
                         <p className="h4 text-center mb-4 font-weight-lighter">Sign in to our App</p>
-
                     </div>
 
-                    <div class="alert alert-danger col-12 alert-dismissible fade show" role="alert" hidden={!this.state.openErrorAlert}>
+                    <div class="alert alert-danger col-12 alert-dismissible fade show" role="alert" hidden={!authError}>
                         Incorrect username or password
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close" 
-                         onClick={() => this.setState({openErrorAlert: false})}>
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                            onClick={closeAuthError}>
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -44,7 +49,7 @@ class LoginPage extends React.Component {
                             className="form-control"
                         />
                         <div className="text-center mt-4">
-                            <button className='btn btn-success w-100 mt-1' onClick={this.props.onLogin}>Sign in</button> 
+                            <button className='btn btn-success w-100 mt-1' onClick={this.props.onLogin}>Sign in</button>
                         </div>
                     </div>
                 </div>
@@ -52,10 +57,16 @@ class LoginPage extends React.Component {
         );
     }
 
-    onLoginError() {
-        this.setState({openErrorAlert: true})
-    }
-
 }
 
-export default LoginPage;
+const mapStateToProps = state => ({
+    authError: state.auth.authError
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    signIn: () => dispatch(requestSignIn()),
+    closeAuthError: () => dispatch(cancelAuthFailure())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+
