@@ -8,13 +8,16 @@ import {
 
 function LoginPage({closeAuthError, authError, signIn}) {
 
-    let history = useHistory();
-    let location = useLocation();
-    let {from} = location.state || {from: {pathname: "/"}};
+    const history = useHistory();
+    const location = useLocation();
+    const {from} = location.state || {from: {pathname: "/"}};
 
     const callback = () => {
         history.replace(from);
     };
+
+    const [login, setLogin] = React.useState('');
+    const [password, setPassword] = React.useState('');
 
     return (
         <div className='vw-100 d-flex justify-content-center'>
@@ -24,9 +27,9 @@ function LoginPage({closeAuthError, authError, signIn}) {
                     <p className="h4 text-center mb-4 font-weight-lighter">Sign in to our App</p>
                 </div>
 
-                <div class="alert alert-danger col-12 alert-dismissible fade show" role="alert" hidden={!authError}>
+                <div className="alert alert-danger col-12 alert-dismissible fade show" role="alert" hidden={!authError}>
                     Incorrect username or password
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                    <button type="button" className="close" data-dismiss="alert" aria-label="Close"
                             onClick={closeAuthError}>
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -41,6 +44,8 @@ function LoginPage({closeAuthError, authError, signIn}) {
                         type="email"
                         id="defaultFormLoginEmailEx"
                         className="form-control"
+                        value={login}
+                        onChange={e => setLogin(e.target.value)}
                     />
                     <br/>
                     <label htmlFor="defaultFormLoginPasswordEx" className="font-weight-lighter">
@@ -50,9 +55,14 @@ function LoginPage({closeAuthError, authError, signIn}) {
                         type="password"
                         id="defaultFormLoginPasswordEx"
                         className="form-control"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                     />
                     <div className="text-center mt-4">
-                        <button className='btn btn-success w-100 mt-1' onClick={() => signIn("login","password",callback)}>Sign in</button>
+                        <button className='btn btn-success w-100 mt-1'
+                                onClick={() => signIn(login,password,callback)}>
+                            Sign in
+                        </button>
                     </div>
                 </div>
             </div>
@@ -71,4 +81,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
-
