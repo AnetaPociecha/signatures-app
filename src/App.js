@@ -12,9 +12,10 @@ import rootReducer from './store/reducers'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './store/sagas'
 import PrivateRoute from "./components/router/PrivateRoute";
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(rootSaga);
 
 function App() {

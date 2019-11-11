@@ -3,6 +3,7 @@ import {Map, TileLayer, Marker, Popup, Circle, CircleMarker, Tooltip} from "reac
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import {connect} from "react-redux";
+import {requestRemovingUserLocation, requestSettingUserLocation} from "../../store/actions/map";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -12,21 +13,32 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-const MapModel = (props) => {
+const MapModel = ({userLocation, setUserLocation, removeUserLocation}) => {
+
+    console.log(userLocation);
+
     return (
         <Map center={[50.061986, 19.936749]} zoom={16} style={{height: '100vh', width: '100vw'}} zoomControl={false}
-             onClick={e => console.log(e)}>
+             onClick={e => {
+                 console.log('clicked')
+                 setUserLocation([e.latlng.lat, e.latlng.lng])
+             }}>
             <TileLayer
                 attribution=""
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             />
-            <Marker position={[51.505, -0.09]}>
-                <Popup>
-                    A pretty CSS3 popup. <br/> Easily customizable.
-                </Popup>
 
-                <Tooltip>Hej</Tooltip>
-            </Marker>
+            {userLocation &&
+                <Marker position={userLocation}>
+                    <Popup>
+                        My location <br/>
+                        <button onClick={removeUserLocation}>
+                            Remove
+                        </button>
+                    </Popup>
+
+                </Marker>
+            }
 
 
             {/*    <Circle*/}
@@ -51,6 +63,9 @@ const mapStateToProps = state => ({
     userLocation: state.map.userLocation
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+    setUserLocation: (location) => dispatch(requestSettingUserLocation(location)),
+    removeUserLocation: () => dispatch(requestRemovingUserLocation())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapModel)

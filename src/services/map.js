@@ -1,4 +1,4 @@
-export function addUserLocation(location, token) {
+export function setUserLocation(location, token) {
 
     //mock
     return new Promise(function(resolve, reject) {
