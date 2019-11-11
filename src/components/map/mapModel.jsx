@@ -13,14 +13,23 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-const MapModel = ({userLocation, setUserLocation, removeUserLocation}) => {
+const userIcon = L.icon({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x-red.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon-red.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 
-    console.log(userLocation);
+    iconSize:     [25, 41],
+    shadowSize:   [41, 41],
+    iconAnchor:   [13, 41],
+    shadowAnchor: [13, 41],
+    popupAnchor:  [0,-34]
+});
+
+const MapModel = ({userLocation, setUserLocation, removeUserLocation, colleagues}) => {
 
     return (
         <Map center={[50.061986, 19.936749]} zoom={16} style={{height: '100vh', width: '100vw'}} zoomControl={false}
              onClick={e => {
-                 console.log('clicked')
                  setUserLocation([e.latlng.lat, e.latlng.lng])
              }}>
             <TileLayer
@@ -29,15 +38,26 @@ const MapModel = ({userLocation, setUserLocation, removeUserLocation}) => {
             />
 
             {userLocation &&
-                <Marker position={userLocation}>
+                <Marker icon={userIcon} position={userLocation}>
                     <Popup>
                         My location <br/>
                         <button onClick={removeUserLocation}>
                             Remove
                         </button>
                     </Popup>
-
                 </Marker>
+            }
+
+            { colleagues && colleagues.filter(colleague => colleague.active).map(colleague => (
+
+                <Marker key={colleague.login} position={colleague.location}>
+                    <Popup>
+                        {colleague.name} <br/>
+                        {colleague.login} <br/>
+                    </Popup>
+                </Marker>
+            ))
+
             }
 
 
@@ -60,7 +80,8 @@ const MapModel = ({userLocation, setUserLocation, removeUserLocation}) => {
 };
 
 const mapStateToProps = state => ({
-    userLocation: state.map.userLocation
+    userLocation: state.map.userLocation,
+    colleagues: state.map.colleagues
 });
 
 const mapDispatchToProps = dispatch => ({
