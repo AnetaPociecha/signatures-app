@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import {Map, TileLayer, Marker, Popup, Circle, CircleMarker, Tooltip} from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import {connect} from "react-redux";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -11,18 +12,45 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-export const MapModel = (props) => {
+const MapModel = (props) => {
     return (
-        <Map center={[51.505, -0.09]} zoom={6} style={{height: '100vh', width: '100vw'}} zoomControl={false} onClick={e => console.log(e)}>
-          <TileLayer
-            attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          />
-          <Marker position={[51.505, -0.09]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
+        <Map center={[50.061986, 19.936749]} zoom={16} style={{height: '100vh', width: '100vw'}} zoomControl={false}
+             onClick={e => console.log(e)}>
+            <TileLayer
+                attribution=""
+                url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            />
+            <Marker position={[51.505, -0.09]}>
+                <Popup>
+                    A pretty CSS3 popup. <br/> Easily customizable.
+                </Popup>
+
+                <Tooltip>Hej</Tooltip>
+            </Marker>
+
+
+            {/*    <Circle*/}
+            {/*        center={{lat:51.505, lng:-0.09}}*/}
+            {/*        opacity={1}*/}
+            {/*        fillColor="blue"*/}
+            {/*        radius={200000}>*/}
+
+            {/*        <Popup minWidth={90}>*/}
+            {/*<span>*/}
+            {/*  Nananana*/}
+            {/*</span>*/}
+            {/*        </Popup>*/}
+
+            {/*    </Circle>*/}
+
         </Map>
     )
-}
+};
+
+const mapStateToProps = state => ({
+    userLocation: state.map.userLocation
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapModel)

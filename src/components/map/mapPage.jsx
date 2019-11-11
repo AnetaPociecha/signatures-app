@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapModel } from './mapModel'
+import MapModel from './mapModel'
 import {requestSignOut} from "../../store/actions/auth";
 import {connect} from "react-redux";
 import {useHistory} from "react-router-dom";

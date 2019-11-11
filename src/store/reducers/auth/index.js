@@ -1,14 +1,14 @@
 import {AUTH_SUCCESS, SING_OUT_SUCCESS, AUTH_FAILURE, CANCEL_AUTH_FAILURE} from "../../types/auth"
 
 const initialState = {
-    isAuthenticated: false,
+    isAuthenticated: true,
     authError: false,
     token: '',
     name: '',
     login: ''
 };
 
-export default (state = initialState, action) => {
+export default function(state = initialState, action) {
 
     switch (action.type) {
         case AUTH_SUCCESS:
