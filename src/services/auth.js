@@ -37,7 +37,7 @@ export function signIn(login, password) {
     //mock
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            resolve({token: 'qwertyuiop', name: 'Jan Kowalski', login: 'jankowalski@gmail.com'});
+            resolve({token: 'qwertyuiop', name: 'Jan Kowalski', login: 'jankowalski@gmail.com', group: 'agh.edu.pl'});
         }, 300);
     })
     // throw "AAAAAAAAAAAAAAAA"

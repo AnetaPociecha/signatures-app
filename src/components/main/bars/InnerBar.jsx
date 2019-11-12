@@ -32,7 +32,7 @@ function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSug
                             <div className="font-weight-bold" style={{fontSize: '0.9em'}}>
                                 {userLocation.name}
                             </div>
-                            <div className='' style={{fontSize: '0.7em'}}>
+                            <div style={{fontSize: '0.7em'}}>
                                 Current location
                             </div>
                         </React.Fragment>

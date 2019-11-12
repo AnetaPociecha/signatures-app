@@ -13,13 +13,15 @@ const initialState = {
             name: 'Harry Potter',
             login: 'harrypotter@gmail.com',
             active: true,
-            location: [50.061132, 19.938267]
+            location: [50.061132, 19.938267],
+            locationName: 'Rynek Główny 41, 31-013 Kraków'
         },
         {
             name: 'Hermiona Granger',
             login: 'hermionagranger@gmail.com',
             active: true,
-            location: [50.061741, 19.936832]
+            location: [50.061741, 19.936832],
+            locationName: 'Rynek Główny 41, 31-013 Kraków'
         },
         {
             name: 'Ron Weasley',

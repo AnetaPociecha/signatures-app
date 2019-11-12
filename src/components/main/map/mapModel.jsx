@@ -71,7 +71,6 @@ const MapModel = ({userLocation, setUserLocation, removeUserLocation, colleagues
                     </Popup>
                 </Marker>
             ))
-
             }
 
             {showSuggestions && suggestions && suggestions.map(suggestion => (

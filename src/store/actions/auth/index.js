@@ -12,11 +12,12 @@ export const requestSignOut = (callback) => ({
     callback
 });
 
-export const authSuccess = (token, name, login) => ({
+export const authSuccess = (token, name, login, group) => ({
     type: AUTH_SUCCESS,
     token,
     name,
-    login
+    login,
+    group
 });
 
 export const authFailure = () => ({

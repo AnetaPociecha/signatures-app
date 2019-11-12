@@ -5,7 +5,8 @@ const initialState = {
     authError: false,
     token: 'test', // remove me
     name: 'Jan Kowalski', // and me
-    login: 'jankowalski@gmail.com' // and me
+    login: 'jankowalski@gmail.com', // and me
+    group: 'agh.edu.pl' // and me
 };
 
 export default function(state = initialState, action) {
@@ -18,6 +19,7 @@ export default function(state = initialState, action) {
                 token: action.token,
                 name: action.name,
                 login: action.login,
+                group: action.group,
                 authError: false
             };
         case SING_OUT_SUCCESS:
