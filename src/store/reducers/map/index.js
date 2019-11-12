@@ -1,10 +1,13 @@
 import {
     SET_USER_LOCATION_SUCCESS,
-    REMOVE_USER_LOCATION_SUCCESS,
+    REMOVE_USER_LOCATION_SUCCESS, SHOW_SUGGESTIONS, HIDE_SUGGESTIONS,
 } from "../../types/map";
 
 const initialState = {
-    userLocation: [50.062332, 19.938387],
+    userLocation: {
+        latlng: [50.062389, 19.938045],
+        name: 'Rynek Główny 41, 31-013 Kraków'
+    },
     colleagues: [
         {
             name: 'Harry Potter',
@@ -25,7 +28,25 @@ const initialState = {
             location: undefined
         },
     ],
-    suggestedLocations: []
+    suggestions: [
+        {
+            location: [50.061430, 19.935885],
+            radius: 20
+        },
+        {
+            location: [50.061055, 19.937306],
+            radius: 15
+        },
+        {
+            location:[50.061964, 19.938553],
+            radius: 20
+        },
+        {
+            location: [50.062379, 19.937052],
+            radius: 30
+        },
+    ],
+    showSuggestions: false
 };
 
 export default function(state = initialState, action) {
@@ -35,7 +56,10 @@ export default function(state = initialState, action) {
         case SET_USER_LOCATION_SUCCESS: {
             return {
                 ...state,
-                userLocation: action.location
+                userLocation: {
+                    latlng: action.latlng,
+                    name: action.name
+                }
             };
         }
 
@@ -43,6 +67,20 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 userLocation: undefined
+            }
+        }
+
+        case SHOW_SUGGESTIONS: {
+            return {
+                ...state,
+                showSuggestions: true
+            }
+        }
+
+        case HIDE_SUGGESTIONS: {
+            return {
+                ...state,
+                showSuggestions: false
             }
         }
 

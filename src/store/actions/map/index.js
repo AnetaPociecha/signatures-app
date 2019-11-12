@@ -2,7 +2,7 @@ import {
     SET_USER_LOCATION_SUCCESS,
     SET_USER_LOCATION_REQUESTED,
     REMOVE_USER_LOCATION_SUCCESS,
-    REMOVE_USER_LOCATION_REQUESTED
+    REMOVE_USER_LOCATION_REQUESTED, SHOW_SUGGESTIONS, HIDE_SUGGESTIONS
 } from "../../types/map";
 
 export const requestSettingUserLocation = (location) => ({
@@ -10,9 +10,10 @@ export const requestSettingUserLocation = (location) => ({
     location
 });
 
-export const successSettingUserLocation = (location) => ({
+export const successSettingUserLocation = (latlng, name) => ({
     type: SET_USER_LOCATION_SUCCESS,
-    location
+    latlng,
+    name
 });
 
 export const requestRemovingUserLocation = () => ({
@@ -21,4 +22,12 @@ export const requestRemovingUserLocation = () => ({
 
 export const successRemovingUserLocation = () => ({
     type: REMOVE_USER_LOCATION_SUCCESS
+});
+
+export const showSuggestions = () => ({
+    type: SHOW_SUGGESTIONS
+});
+
+export const hideSuggestions = () => ({
+    type: HIDE_SUGGESTIONS
 });

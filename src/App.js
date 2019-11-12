@@ -4,8 +4,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import LoginPage from './components/login/loginPage'
-import MapPage from './components/map/mapPage'
+import LoginPage from './components/login'
+import MapPage from './components/main'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './store/reducers'

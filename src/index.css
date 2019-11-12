@@ -13,21 +13,19 @@ code {
 }
 
 #root {
-  min-height: 100%; 
+  min-height: 100%;
   min-height: 100vh;
 
   display: flex;
   align-items: center;
 
-  background-color: #EFEFF0;
+  /*background-color: #EFEFF0;*/
 }
 
 #rock {
   border: 0;
-  /* width: 150px;
-  height: 150px; */
-  background: url(https://img.freepik.com/free-vector/triangle-wolf-design_23-2147495369.jpg?size=338&ext=jpg) no-repeat;
-} 
+  background: url('./user.png');
+}
 
 #nameItem:hover {
   background-color: #fff !important;

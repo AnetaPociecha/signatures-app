@@ -6,7 +6,7 @@ import {
     useLocation
 } from "react-router-dom";
 
-function LoginPage({closeAuthError, authError, signIn}) {
+function Index({closeAuthError, authError, signIn}) {
 
     const history = useHistory();
     const location = useLocation();
@@ -80,4 +80,4 @@ const mapDispatchToProps = (dispatch) => ({
     closeAuthError: () => dispatch(cancelAuthFailure())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

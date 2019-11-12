@@ -1,11 +1,11 @@
 import {AUTH_SUCCESS, SING_OUT_SUCCESS, AUTH_FAILURE, CANCEL_AUTH_FAILURE} from "../../types/auth"
 
 const initialState = {
-    isAuthenticated: true,
+    isAuthenticated: true, // change to false
     authError: false,
-    token: '',
-    name: '',
-    login: ''
+    token: 'test', // remove me
+    name: 'Jan Kowalski', // and me
+    login: 'jankowalski@gmail.com' // and me
 };
 
 export default function(state = initialState, action) {
