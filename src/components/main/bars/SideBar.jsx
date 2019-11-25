@@ -1,21 +1,21 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-function SideBar({colleagues}) {
+function SideBar({colleagues, group}) {
 
     const activeNumber = colleagues.filter(colleague => colleague.active).length;
 
     return (
-        <div className="p-1 bg-light border" style={{display: 'flex', flexDirection: 'column'}}>
+        <div className='bg-light'>
+        <div className="p-1 border-light rounded-lg ml-1 mr-1" style={{display: 'flex', flexDirection: 'column', backgroundColor:'#f2f2f2'}}>
 
-            <div className="p-1 border-bottom" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-
+            <div className="pt-1 pb-1 mr-2 ml-2 " style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                 <div className='p-1 pr-2' style={{display: 'flex', flexDirection: 'column'}}>
                     <div className="font-weight-bold" style={{fontSize: '0.9em'}}>
-                        agh.edu.pl
+                        {group}
                     </div>
 
-                    <div style={{fontSize: '0.7em'}}>
+                    <div className='text-muted' style={{fontSize: '0.7em'}}>
                         Group
                     </div>
                 </div>
@@ -26,36 +26,38 @@ function SideBar({colleagues}) {
                         {activeNumber}/{colleagues.length}
                     </div>
 
-                    <div style={{fontSize: '0.7em'}}>
+                    <div className='text-muted' style={{fontSize: '0.7em'}}>
                         Colleagues
                     </div>
                 </div>
-
             </div>
 
 
             {colleagues && colleagues.map(colleague => (
-                <div className="p-1 border-bottom"
+                <div className="pt-1 pb-1 mr-2 ml-2 border-top"
                      style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
 
                     <div className='p-1 pr-2' style={{display: 'flex', flexDirection: 'column'}}>
-                        <div style={{fontSize: '0.9em'}}>
+                        <div className='font-weight-bold' style={{fontSize: '0.9em'}}>
                             {colleague.name}
                         </div>
 
-                        <div style={{fontSize: '0.7em'}}>
+                        <div
+                            style={{fontSize: '0.8em'}}
+                        >
                             {colleague.locationName}
                         </div>
                     </div>
 
-                    <div style={{fontSize: '0.7em'}}>
-                        {colleague.active && 'Active'}
-                    </div>
+                    {/*<div style={{fontSize: '0.7em'}}>*/}
+                    {/*    {colleague.active && 'Active'}*/}
+                    {/*</div>*/}
 
                 </div>
             ))
             }
 
+        </div>
         </div>
     )
 }
@@ -63,7 +65,8 @@ function SideBar({colleagues}) {
 const mapDispatchToProps = dispatch => ({});
 
 const mapStateToProps = state => ({
-    colleagues: state.map.colleagues
+    colleagues: state.map.colleagues,
+    group: state.auth.group
 });
 
 

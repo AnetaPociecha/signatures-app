@@ -2,6 +2,7 @@ import React from 'react'
 import {useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 import {requestSignOut} from "../../../store/actions/auth";
+import logo from './logo.PNG';
 
 function TopBar({name, login, signOut}) {
 
@@ -12,18 +13,16 @@ function TopBar({name, login, signOut}) {
     };
 
     return (
-        <nav className="navbar navbar-dark bg-dark border-bottom pb-1 pt-1"
+        <nav className="navbar navbar-dark bg-dark pb-0 pt-0 pl-0"
              style={{display: 'flex', flexDirection: 'row'}}>
 
-            <div className="navbar-brand pl-1">
-                SignMap
-            </div>
+            <img style={{width: 300}} src={logo} alt='logo'/>
 
-            <div className='nav-item pr-1 text-right' style={{flex: 1}}>
+            <div className='nav-item text-right' style={{flex: 1}}>
 
                 <div className="btn-group">
-                    <button id='rock' className="rounded-circle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" style={{width: 30, height: 30}}/>
+                    <button id='rock' className="rounded-circle mr-2 ml-1" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style={{width: 35, height: 35}}/>
 
                     <div className="dropdown-menu dropdown-menu-right ">
                         <p id='nameItem' className="dropdown-item mb-0">
@@ -36,6 +35,11 @@ function TopBar({name, login, signOut}) {
                         </button>
                     </div>
                 </div>
+
+                {/*<div className="navbar-brand pl-1" style={{fontSize: '1em'}}>*/}
+                {/*    {name}*/}
+                {/*</div>*/}
+
             </div>
 
 

@@ -1,4 +1,4 @@
-import {takeEvery, takeLatest, select, put, call} from "@redux-saga/core/effects";
+import {takeLatest, select, put, call} from "@redux-saga/core/effects";
 import {SET_USER_LOCATION_REQUESTED} from "../../types/map";
 import {selectToken} from "../../selectors";
 import {setUserLocation} from "../../../services/map";

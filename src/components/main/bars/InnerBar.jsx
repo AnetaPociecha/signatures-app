@@ -1,29 +1,29 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {requestSignOut} from "../../../store/actions/auth";
 import {hideSuggestions, showSuggestions} from "../../../store/actions/map";
+import Checkbox from '@material-ui/core/Checkbox';
 
 function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSuggestions}) {
+
     return (
         <nav className="bg-light p-sm-2" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
 
-            <div className='pl-2'>
-                <button
-                    className='btn btn-success btn-sm py-sm-1 lead'
-                    style={{fontSize: '0.8em'}}
+            <div>
+                <Checkbox
+                    defaultChecked
+                    color="default"
+                    checked={areSuggestionsVisible}
                     onClick={
                         areSuggestionsVisible ?
                             hideSuggestions :
                             showSuggestions
                     }
-                >
-                    {areSuggestionsVisible ?
-                        "Hide suggestions" :
-                        "Show suggestions"
-                    }
-                </button>
+                />
             </div>
 
+            <div className="font-weight-bold pr-3 border-right mr-1">
+                Suggestions
+            </div>
 
             <div className='pl-3 pr-2' style={{flex: 1}}>
                 {
@@ -32,8 +32,8 @@ function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSug
                             <div className="font-weight-bold" style={{fontSize: '0.9em'}}>
                                 {userLocation.name}
                             </div>
-                            <div style={{fontSize: '0.7em'}}>
-                                Current location
+                            <div className='text-muted' style={{fontSize: '0.7em'}}>
+                                Your location
                             </div>
                         </React.Fragment>
                         :
@@ -43,8 +43,6 @@ function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSug
                 }
 
             </div>
-
-
         </nav>
     )
 }

@@ -20,15 +20,13 @@ function Index({closeAuthError, authError, signIn}) {
     const [login, setLogin] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    console.log(authError)
-
     return (
         <div className='vw-100 vh-100 d-flex justify-content-center align-items-center bg-dark'>
 
             <div className='p-5 bg-white rounded-lg'>
 
                 <div className='col-12 pb-3 mb-1 border-bottom d-flex justify-content-center align-items-center'>
-                    <img style={{width: 250}} src={logo}/>
+                    <img style={{width: 250}} src={logo} alt='logo'/>
                 </div>
 
                 <div className='col-12 pr-5 pl-5 pt-3'>
@@ -50,16 +48,6 @@ function Index({closeAuthError, authError, signIn}) {
                             </button>
                         </div>
 
-                        {/*{*/}
-                        {/*    authError && (*/}
-                        {/*        <React.Fragment>*/}
-                        {/*            <div className='font-weight-bold text-center pb-1' style={{fontSize: '0.75em', color: '#ab1f3c'}}>*/}
-                        {/*                Incorrect email or password*/}
-                        {/*            </div>*/}
-                        {/*        </React.Fragment>*/}
-                        {/*    )*/}
-                        {/*}*/}
-
                         <input
                             type="email"
                             placeholder='Email'
@@ -80,7 +68,6 @@ function Index({closeAuthError, authError, signIn}) {
                         />
 
                         <br/>
-
 
 
                         <div className="text-center">
