@@ -1,0 +1,14 @@
+{
+  "Email": "Email",
+  "Password": "Password",
+  "SignIn": "Sign in",
+  "ForgotPassword?": "Forgot password?",
+  "IncorrectEmailOrPassword": "Incorrect email or password",
+  "YourLocation": "Your location",
+  "Suggestions": "Suggestions",
+  "Group": "Group",
+  "Colleagues": "Colleagues",
+  "SignOut": "Sign out",
+  "Remove": "Remove",
+  "LocationNotSelected": "Your location is not selected. You can set your location by clicking on the map below."
+}

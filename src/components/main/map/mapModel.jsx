@@ -4,6 +4,8 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import {connect} from "react-redux";
 import {requestRemovingUserLocation, requestSettingUserLocation} from "../../../store/actions/map";
+import {useEffect} from "react";
+import { withTranslation } from 'react-i18next';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -25,11 +27,20 @@ const userIcon = L.icon({
     popupAnchor: [0, -34]
 });
 
-const MapModel = ({userLocation, setUserLocation, removeUserLocation, colleagues, suggestions, showSuggestions, name, login, height, width}) => {
+function MapModel({userLocation, setUserLocation, removeUserLocation, colleagues, suggestions, showSuggestions, name, login, height, width, t}) {
+
+    useEffect(() => {
+        console.log(ref.leafletElement.getBounds())
+
+    });
+
+    let ref = undefined;
 
     return (
-        <Map center={[50.061687, 19.937306]} zoom={17.5} style={{height: height, width: width}} zoomControl={false}
+        <Map ref={node => ref = node} center={[50.061687, 19.937306]} zoom={17.5}
+             style={{height: height, width: width}} zoomControl={false}
              onClick={e => setUserLocation([e.latlng.lat, e.latlng.lng])}
+
         >
             <TileLayer
                 attribution=""
@@ -54,7 +65,7 @@ const MapModel = ({userLocation, setUserLocation, removeUserLocation, colleagues
 
                         <div>
                             <button className='btn btn-danger btn-sm' onClick={removeUserLocation}>
-                                Remove
+                                {t('Remove')}
                             </button>
                         </div>
                     </div>
@@ -84,7 +95,8 @@ const MapModel = ({userLocation, setUserLocation, removeUserLocation, colleagues
 
         </Map>
     )
-};
+
+}
 
 const mapStateToProps = state => ({
     userLocation: state.map.userLocation,
@@ -100,4 +112,4 @@ const mapDispatchToProps = dispatch => ({
     removeUserLocation: () => dispatch(requestRemovingUserLocation())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapModel)
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(MapModel))

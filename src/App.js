@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route
+    BrowserRouter as Router,
+    Switch,
+    Route
 } from "react-router-dom";
 import LoginPage from './components/login'
 import MapPage from './components/main'
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
+import {createStore, applyMiddleware} from 'redux'
+import {Provider} from 'react-redux'
 import rootReducer from './store/reducers'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './store/sagas'
@@ -19,22 +19,24 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaM
 sagaMiddleware.run(rootSaga);
 
 function App() {
-  return (
-    <Provider store={store}>
-        <Router>
-            <div>
-                <Switch>
-                    <Route path="/login" strict exact>
-                        <LoginPage />
-                    </Route>
-                    <PrivateRoute path="/" strict exact>
-                        <MapPage />
-                    </PrivateRoute>
-                </Switch>
-            </div>
-        </Router>
-    </Provider>
-  );
+    return (
+        <Suspense fallback="loading">
+            <Provider store={store}>
+                <Router>
+                    <div>
+                        <Switch>
+                            <Route path="/login" strict exact>
+                                <LoginPage/>
+                            </Route>
+                            <PrivateRoute path="/" strict exact>
+                                <MapPage/>
+                            </PrivateRoute>
+                        </Switch>
+                    </div>
+                </Router>
+            </Provider>
+        </Suspense>
+    );
 }
 
 export default App;

@@ -6,8 +6,9 @@ import {
     useLocation
 } from "react-router-dom";
 import logo from './logo.PNG';
+import { withTranslation } from 'react-i18next';
 
-function Index({closeAuthError, authError, signIn}) {
+function Index({closeAuthError, authError, signIn, t}) {
 
     const history = useHistory();
     const location = useLocation();
@@ -40,7 +41,7 @@ function Index({closeAuthError, authError, signIn}) {
                             hidden={!authError}
                         >
                             <div>
-                                Incorrect email or password
+                                {t("IncorrectEmailOrPassword")}
                             </div>
                             <button type="button" className="close py-sm-1"
                                     onClick={closeAuthError} style={{fontSize: '1.3em'}}>
@@ -50,7 +51,7 @@ function Index({closeAuthError, authError, signIn}) {
 
                         <input
                             type="email"
-                            placeholder='Email'
+                            placeholder={t("Email")}
                             className="form-control rounded-lg"
                             style={{fontSize: '0.8em'}}
                             value={login}
@@ -60,7 +61,7 @@ function Index({closeAuthError, authError, signIn}) {
 
                         <input
                             type="password"
-                            placeholder='Password'
+                            placeholder={t('Password')}
                             className="form-control rounded-lg"
                             style={{fontSize: '0.8em'}}
                             value={password}
@@ -76,7 +77,7 @@ function Index({closeAuthError, authError, signIn}) {
                                 style={{fontSize: '0.9em', backgroundColor: '#ab1f3c'}}
                                 onClick={() => signIn(login, password, callback)}
                             >
-                                Sign in
+                                {t('SignIn')}
                             </button>
                         </div>
                         <br/>
@@ -84,7 +85,7 @@ function Index({closeAuthError, authError, signIn}) {
                             className='text-muted text-center'
                             style={{fontSize: '0.75em'}}
                         >
-                            Forgot password?
+                            {t('ForgotPassword?')}
                         </div>
                     </div>
                 </div>
@@ -103,4 +104,4 @@ const mapDispatchToProps = (dispatch) => ({
     closeAuthError: () => dispatch(cancelAuthFailure())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Index));

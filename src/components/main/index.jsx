@@ -8,26 +8,33 @@ import TopBar from "./bars/TopBar";
 function Index() {
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw'}}>
-
+        <div style={{height: '100vh', maxHeight: '100vh', width: '100vw'}} className='bg-light'>
             <TopBar/>
-            <InnerBar/>
-
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                flex: 1,
-                minWidth: 400,
-                minHeight: 200,
-                maxWidth: '100vw'
-            }}>
-
-                <ContainerDimensions>
-                    {({width, height}) => <MapModel width={width} height={height}/>}
-                </ContainerDimensions>
-
-
+            <div style={{width: '100vw', maxWidth: '100vw', display: 'flex', flexDirection: 'row'}}>
                 <SideBar/>
+
+                <div
+                    style={{
+                        minWidth: 500,
+                        minHeight: 200,
+                    }}
+                >
+
+                    <InnerBar/>
+
+                    <div
+                        style={{
+                            width: 'calc(100vw - 300px)',
+                            height: 'calc(100vh - 110px)',
+                            boxShadow: '-2px -2px 8px -2px rgba(122,122,122,1)'
+                        }}
+                    >
+                        <ContainerDimensions>
+                            {({width, height}) => <MapModel width={width} height={height}/>}
+                        </ContainerDimensions>
+                    </div>
+
+                </div>
 
             </div>
         </div>

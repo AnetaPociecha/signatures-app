@@ -1,0 +1,13 @@
+{
+  "Email": "Email",
+  "Password": "Hasło",
+  "SignIn": "Zaloguj się",
+  "ForgotPassword?": "Zapomniałeś hasła?",
+  "YourLocation": "Twoja lokalizacja",
+  "Suggestions": "Sugestie",
+  "Group": "Grupa",
+  "Colleagues": "Znajomi",
+  "SignOut": "Wyloguj się",
+  "Remove": "Usuń",
+  "LocationNotSelected": "Twoja lokalizacja nie jest wybrana. Kliknij na mapę, aby wybrać lokalizację."
+}

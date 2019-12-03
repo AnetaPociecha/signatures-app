@@ -1,12 +1,16 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {hideSuggestions, showSuggestions} from "../../../store/actions/map";
-import Checkbox from '@material-ui/core/Checkbox';
+import {Checkbox} from '@material-ui/core';
+import { withTranslation } from 'react-i18next';
 
-function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSuggestions}) {
+function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSuggestions, t}) {
 
     return (
-        <nav className="bg-light p-sm-2" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <nav
+            className="bg-light p-sm-2"
+            style={{display: 'flex', flexDirection: 'row', alignItems: 'center', width: 'calc(100vw - 310px)'}}
+        >
 
             <div>
                 <Checkbox
@@ -22,23 +26,23 @@ function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSug
             </div>
 
             <div className="font-weight-bold pr-3 border-right mr-1">
-                Suggestions
+                {t('Suggestions')}
             </div>
 
             <div className='pl-3 pr-2' style={{flex: 1}}>
                 {
                     userLocation ?
                         <React.Fragment>
+                            <div className='text-muted' style={{fontSize: '0.7em'}}>
+                                {t('YourLocation')}
+                            </div>
                             <div className="font-weight-bold" style={{fontSize: '0.9em'}}>
                                 {userLocation.name}
-                            </div>
-                            <div className='text-muted' style={{fontSize: '0.7em'}}>
-                                Your location
                             </div>
                         </React.Fragment>
                         :
                         <div style={{fontSize: '0.9em'}}>
-                            Your location is not selected. You can set your location by clicking on the map below.
+                            {t("LocationNotSelected")}
                         </div>
                 }
 
@@ -57,4 +61,4 @@ const mapDispatchToProps = (dispatch) => ({
     hideSuggestions: () => dispatch(hideSuggestions())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(InnerBar);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(InnerBar));
