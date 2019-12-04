@@ -7,9 +7,9 @@ function SideBar({colleagues, group, t}) {
     const activeNumber = colleagues.filter(colleague => colleague.active).length;
 
     return (
-        <div className='bg-light' style={{width: 300}}>
+        <div className='bg-light' style={{minWidth: 300, width: 300, height: 'calc(100vh - 52px)'}}>
             <div className="p-1 border-light rounded-lg m-3"
-                 style={{display: 'flex', flexDirection: 'column', backgroundColor: '#f2f2f2'}}>
+                 style={{display: 'flex', maxHeight: '95%', overflow: 'auto', flexDirection: 'column', backgroundColor: '#f2f2f2'}}>
 
                 <div className="pt-1 pb-1 mr-2 ml-2 "
                      style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>

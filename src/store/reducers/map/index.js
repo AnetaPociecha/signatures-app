@@ -29,6 +29,7 @@ const initialState = {
             active: false,
             location: undefined
         },
+
     ],
     suggestions: [
         {

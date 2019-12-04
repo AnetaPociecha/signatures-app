@@ -13,12 +13,7 @@ function Index() {
             <div style={{width: '100vw', maxWidth: '100vw', display: 'flex', flexDirection: 'row'}}>
                 <SideBar/>
 
-                <div
-                    style={{
-                        minWidth: 500,
-                        minHeight: 200,
-                    }}
-                >
+                <div>
 
                     <InnerBar/>
 
