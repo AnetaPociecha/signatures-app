@@ -12,7 +12,7 @@ const config = {
 export function signIn(login, password) {
 
 
-    axios.post('http://signmap-backend.herokuapp.com/login?email=jankowalski@gmail.com&password=jan', {}, config)
+    axios.post('https://signmap-backend.herokuapp.com/login?email=jankowalski@gmail.com&password=jan', {}, config)
         .then(function (response) {
             // handle success
             console.log(response);
