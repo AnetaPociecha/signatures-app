@@ -4,7 +4,7 @@ import axios from 'axios'
 export function signIn(login, password) {
 
 
-    axios.post('http://signmap-backend.herokuapp.com/login?email=jankowalski@gmail.com&password=jan', {})
+    axios.post('https://signmap-backend.herokuapp.com/login?email=jankowalski@gmail.com&password=jan', {})
         .then(function (response) {
             // handle success
             console.log(response);
