@@ -1,44 +1,23 @@
 import axios from 'axios'
-
-
-const config = {
-    headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-    }
-};
-
+import config from "./config";
 
 export function signIn(login, password) {
 
-
-    axios.post('https://signmap-backend.herokuapp.com/login?email=jankowalski@gmail.com&password=jan', {}, config)
+    return axios.post(`https://signmap-backend.herokuapp.com/login?email=${login}&password=${password}`, {}, config)
         .then(function (response) {
-            // handle success
             console.log(response);
+            return response.data
         })
         .catch(function (error) {
-            // handle error
-            console.log(error);
+            throw error
         })
-        .finally(function () {
-            // always executed
-        });
-
-    //mock
-    return new Promise(function(resolve, reject) {
-        setTimeout(function() {
-            resolve({token: 'qwertyuiop', name: 'Jan Kowalski', login: 'jankowalski@gmail.com', group: 'AGH'});
-        }, 300);
-    })
-    // throw "AAAAAAAAAAAAAAAA"
 }
 
 export function signOut(token) {
 
     //mock
-    return new Promise(function(resolve, reject) {
-        setTimeout(function() {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
             resolve({});
         }, 300);
     })

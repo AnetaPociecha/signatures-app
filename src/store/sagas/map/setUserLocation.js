@@ -8,7 +8,6 @@ import {successSettingUserLocation} from "../../actions/map";
 function* doAddUserLocation(action) {
 
     try {
-
         const token = yield select(selectToken);
         const location = yield call(setUserLocation, action.location, token);
         yield put(successSettingUserLocation(location.latlng, location.name));

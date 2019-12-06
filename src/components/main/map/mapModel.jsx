@@ -34,10 +34,19 @@ function MapModel({userLocation, setUserLocation, removeUserLocation, colleagues
 
     });
 
+    const [center, setCenter] = React.useState([50.061687, 19.937306]);
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            setCenter([position.coords.latitude, position.coords.longitude])
+        });
+    }, []);
+
+
     let ref = undefined;
 
     return (
-        <Map ref={node => ref = node} center={[50.061687, 19.937306]} zoom={17.5}
+        <Map ref={node => ref = node} center={center} zoom={16}
              style={{height: height, width: width}} zoomControl={false}
              onClick={e => setUserLocation([e.latlng.lat, e.latlng.lng])}
 
@@ -86,9 +95,10 @@ function MapModel({userLocation, setUserLocation, removeUserLocation, colleagues
 
             {showSuggestions && suggestions && suggestions.map(suggestion => (
                 <Circle
+                    key={suggestion.location}
                     center={suggestion.location}
                     opacity={0.15}
-                    fillColor="red"
+                    fillColor="green"
                     radius={suggestion.radius}/>
             ))
             }

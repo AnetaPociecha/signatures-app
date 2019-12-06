@@ -14,7 +14,6 @@ function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSug
 
             <div>
                 <Checkbox
-                    defaultChecked
                     color="default"
                     checked={areSuggestionsVisible}
                     onClick={

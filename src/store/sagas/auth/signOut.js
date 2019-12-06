@@ -6,8 +6,8 @@ import {selectToken} from "../../selectors";
 
 function* doSignOut(action) {
     try {
-        const token = yield select(selectToken);
-        yield call(signOut, token);
+        //const token = yield select(selectToken);
+        //yield call(signOut, token);
         yield put(signOutSuccess());
         yield action.callback();
 

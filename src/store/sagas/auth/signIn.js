@@ -6,7 +6,7 @@ import {authFailure, authSuccess} from "../../actions/auth";
 function* doAuth(action) {
     try {
         const authTO = yield call(signIn, action.login, action.password);
-        yield put(authSuccess(authTO.token, authTO.name, authTO.login, authTO.group));
+        yield put(authSuccess(authTO));
         yield action.callback();
     } catch (e) {
         yield put(authFailure())

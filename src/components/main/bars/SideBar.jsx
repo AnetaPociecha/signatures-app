@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { withTranslation } from 'react-i18next';
+import {withTranslation} from 'react-i18next';
+import Groups from "./Groups";
 
 function SideBar({colleagues, group, t}) {
 
@@ -9,7 +10,13 @@ function SideBar({colleagues, group, t}) {
     return (
         <div className='bg-light' style={{minWidth: 300, width: 300, height: 'calc(100vh - 52px)'}}>
             <div className="p-1 border-light rounded-lg m-3"
-                 style={{display: 'flex', maxHeight: '95%', overflow: 'auto', flexDirection: 'column', backgroundColor: '#f2f2f2'}}>
+                 style={{
+                     display: 'flex',
+                     maxHeight: '95%',
+                     overflow: 'auto',
+                     flexDirection: 'column',
+                     backgroundColor: '#f2f2f2'
+                 }}>
 
                 <div className="pt-1 pb-1 mr-2 ml-2 "
                      style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -30,11 +37,16 @@ function SideBar({colleagues, group, t}) {
                             {activeNumber}/{colleagues.length}
                         </div>
                     </div>
+
+                    <button id='threeDots' className="pr-2 ml-2" style={{width: 20, height: 20}}
+                            type="button" data-toggle="modal" data-target="#groupsModal"/>
+
+
                 </div>
 
 
                 {colleagues && colleagues.map(colleague => (
-                    <div className="pt-1 pb-1 mr-2 ml-2 border-top"
+                    <div key={colleague.login} className="pt-1 pb-1 mr-2 ml-2 border-top"
                          style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
 
                         <div className='p-1 pr-2' style={{display: 'flex', flexDirection: 'column'}}>
@@ -58,6 +70,9 @@ function SideBar({colleagues, group, t}) {
                 }
 
             </div>
+
+            <Groups/>
+
         </div>
     )
 }

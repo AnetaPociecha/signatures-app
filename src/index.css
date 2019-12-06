@@ -27,6 +27,12 @@ code {
   background: url('./user.png');
 }
 
+
+#threeDots {
+  border: 0;
+  background: url('./dots.png');
+}
+
 #nameItem:hover {
   background-color: #fff !important;
   text-decoration: none;

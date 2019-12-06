@@ -10,5 +10,9 @@
   "Colleagues": "Colleagues",
   "SignOut": "Sign out",
   "Remove": "Remove",
-  "LocationNotSelected": "Your location is not selected. You can set your location by clicking on the map below."
+  "LocationNotSelected": "Your location is not selected. You can set your location by clicking on the map below.",
+  "Settings": "Settings",
+  "SelectGroup": "Select group",
+  "Groups": "Groups",
+  "LeaveGroup": "Leave group"
 }

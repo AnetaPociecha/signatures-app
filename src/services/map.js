@@ -22,3 +22,7 @@ export function removeUserLocation(token) {
     })
     // throw "AAAAAAAAAAAAAAAA"
 }
+
+export function suggestions(latlng) {
+
+}

@@ -3,8 +3,9 @@ import {useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 import {requestSignOut} from "../../../store/actions/auth";
 import logo from './logo.png';
+import {withTranslation} from "react-i18next";
 
-function TopBar({name, login, signOut}) {
+function TopBar({fullName, login, signOut, t}) {
 
     const history = useHistory();
 
@@ -30,15 +31,21 @@ function TopBar({name, login, signOut}) {
                         {/*    <small>Your login</small> <br/> {login}*/}
                         {/*</p>*/}
 
-                        {/*<div className="dropdown-divider"/>*/}
+
+                        <button className="dropdown-item" type="button" onClick={() => console.log('TO DO settings')}>
+                            {t('Settings')}
+                        </button>
+
+                        <div className="dropdown-divider"/>
+
                         <button className="dropdown-item" type="button" onClick={() => signOut(callback)}>
-                            Sign out
+                            {t('SignOut')}
                         </button>
                     </div>
                 </div>
 
                 <div className="navbar-brand pl-1 text-light" style={{fontSize: '1em'}}>
-                    {name}
+                    {fullName}
                 </div>
 
             </div>
@@ -49,12 +56,12 @@ function TopBar({name, login, signOut}) {
 }
 
 const mapStateToProps = state => ({
-    name: state.auth.name,
-    login: state.auth.login
+    fullName: state.auth.fullName,
+    email: state.auth.email
 });
 
 const mapDispatchToProps = (dispatch) => ({
     signOut: (callback) => dispatch(requestSignOut(callback)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(TopBar));

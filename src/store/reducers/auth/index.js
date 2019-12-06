@@ -1,12 +1,15 @@
 import {AUTH_SUCCESS, SING_OUT_SUCCESS, AUTH_FAILURE, CANCEL_AUTH_FAILURE} from "../../types/auth"
 
 const initialState = {
-    isAuthenticated: false, // change to false
+    isAuthenticated: true, // change to false
     authError: false,
-    token: '', //'test', // remove me
-    name: '', //'Jan Kowalski', // and me
-    login: '', //'jankowalski@gmail.com', // and me
-    group: '', //'agh.edu.pl' // and me
+
+    currentLocation: undefined,
+
+    email: '',
+    id: undefined,
+    fullName: '',
+    group: '',
 };
 
 export default function(state = initialState, action) {
@@ -16,10 +19,10 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: true,
-                token: action.token,
-                name: action.name,
-                login: action.login,
-                group: action.group,
+                currentLocation: action.authTO.currentLocation || undefined,
+                email: action.authTO.email,
+                fullName: `${action.authTO.name} ${action.authTO.surname}`,
+                group: 'AGH', //fix
                 authError: false
             };
         case SING_OUT_SUCCESS:

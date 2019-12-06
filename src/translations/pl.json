@@ -9,5 +9,9 @@
   "Colleagues": "Znajomi",
   "SignOut": "Wyloguj się",
   "Remove": "Usuń",
-  "LocationNotSelected": "Twoja lokalizacja nie jest wybrana. Kliknij na mapę, aby wybrać lokalizację."
+  "LocationNotSelected": "Twoja lokalizacja nie jest wybrana. Kliknij na mapę, aby wybrać lokalizację.",
+  "Settings": "Ustawienia",
+  "SelectGroup": "Wybierz grupę",
+  "Groups": "Twoje grupy",
+  "LeaveGroup": "Opuść grupę"
 }
