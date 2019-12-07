@@ -9,7 +9,7 @@ const mock = [
                 currentLocation: {name: 'Rynek', longitude: 50.061430, latitude: 19.935885}
             },
             {
-                id: 1, email: 'test.gmail.com', name: 'Jan', surname: 'Kowalski',
+                id: 2, email: 'test.gmail.com', name: 'Jan', surname: 'Kowalski',
                 currentLocation: null
             }]
     },
@@ -20,7 +20,7 @@ const mock = [
                 currentLocation: {name: 'Rynek', longitude: 50.061430, latitude: 19.935885}
             },
             {
-                id: 1, email: 'test.gmail.com', name: 'Jan', surname: 'Kowalski',
+                id: 2, email: 'test.gmail.com', name: 'Jan', surname: 'Kowalski',
                 currentLocation: null
             }]
     }

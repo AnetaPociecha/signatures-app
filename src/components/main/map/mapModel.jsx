@@ -1,11 +1,11 @@
 import * as React from "react";
-import {Map, TileLayer, Marker, Popup, Circle} from "react-leaflet";
+import {Map, TileLayer, Marker, Popup, Circle, Tooltip, CircleMarker} from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import {connect} from "react-redux";
 import {requestRemovingUserLocation, requestSettingUserLocation} from "../../../store/actions/map";
 import {useEffect} from "react";
-import { withTranslation } from 'react-i18next';
+import {withTranslation} from 'react-i18next';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -27,17 +27,16 @@ const userIcon = L.icon({
     popupAnchor: [0, -34]
 });
 
-function MapModel({userLocation, setUserLocation, removeUserLocation, colleagues, suggestions, showSuggestions, name, login, height, width, t}) {
+
+function MapModel({userLocation, setUserLocation, removeUserLocation, suggestions, showSuggestions, fullName, email, height, width, t, center, setCenter, selectedGroup}) {
+
+    // useEffect(() => {
+    //     console.log(ref.leafletElement.getBounds())
+    //
+    // });
 
     useEffect(() => {
-        console.log(ref.leafletElement.getBounds())
-
-    });
-
-    const [center, setCenter] = React.useState([50.061687, 19.937306]);
-
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             setCenter([position.coords.latitude, position.coords.longitude])
         });
     }, []);
@@ -68,8 +67,8 @@ function MapModel({userLocation, setUserLocation, removeUserLocation, colleagues
                     }}>
 
                         <div className='p-1 pb-2'>
-                            {name} <br/>
-                            {login} <br/>
+                            {fullName}<br/>
+                            {email} <br/>
                         </div>
 
                         <div>
@@ -82,12 +81,12 @@ function MapModel({userLocation, setUserLocation, removeUserLocation, colleagues
             </Marker>
             }
 
-            {colleagues && colleagues.filter(colleague => colleague.active).map(colleague => (
+            {selectedGroup && selectedGroup.groupMembers.filter(member => member.currentLocation).map(member => (
 
-                <Marker key={colleague.login} position={colleague.location}>
+                <Marker key={member.email} position={[member.currentLocation.longitude ,member.currentLocation.latitude]}>
                     <Popup>
-                        {colleague.name} <br/>
-                        {colleague.login} <br/>
+                        {member.name} {member.surname}<br/>
+                        {member.email} <br/>
                     </Popup>
                 </Marker>
             ))
@@ -95,11 +94,17 @@ function MapModel({userLocation, setUserLocation, removeUserLocation, colleagues
 
             {showSuggestions && suggestions && suggestions.map(suggestion => (
                 <Circle
-                    key={suggestion.location}
-                    center={suggestion.location}
-                    opacity={0.15}
-                    fillColor="green"
-                    radius={suggestion.radius}/>
+                    key={`${suggestion.longitude}${suggestion.latitude}`}
+                    center={[suggestion.longitude, suggestion.latitude]}
+                    // opacity={0.15}
+                    // fillColor="blue"
+                    radius={15}
+                    color='red'
+                >
+                    <Tooltip>
+                        {suggestion.name}
+                    </Tooltip>
+                </Circle>
             ))
             }
 
@@ -109,12 +114,13 @@ function MapModel({userLocation, setUserLocation, removeUserLocation, colleagues
 }
 
 const mapStateToProps = state => ({
-    userLocation: state.map.userLocation,
-    colleagues: state.map.colleagues,
     suggestions: state.map.suggestions,
     showSuggestions: state.map.showSuggestions,
-    name: state.auth.name,
-    login: state.auth.login
+    fullName: state.auth.fullName,
+    email: state.auth.email,
+    selectedGroup: state.group.selectedGroup,
+    // currentLocation: state.auth.currentLocation,
+    userLocation: state.map.userLocation
 });
 
 const mapDispatchToProps = dispatch => ({

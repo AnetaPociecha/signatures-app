@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {hideSuggestions, showSuggestions} from "../../../store/actions/map";
+import {hideSuggestions, requestFetchingSuggestions, showSuggestions} from "../../../store/actions/map";
 import {Checkbox} from '@material-ui/core';
 import { withTranslation } from 'react-i18next';
 
-function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSuggestions, t}) {
+function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSuggestions, t, requestFetchingSuggestions, location}) {
 
     return (
         <nav
@@ -19,7 +19,7 @@ function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSug
                     onClick={
                         areSuggestionsVisible ?
                             hideSuggestions :
-                            showSuggestions
+                            () => requestFetchingSuggestions(location[0], location[1])
                     }
                 />
             </div>
@@ -56,7 +56,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    showSuggestions: () => dispatch(showSuggestions()),
+    requestFetchingSuggestions: (latitude, longitude) => dispatch(requestFetchingSuggestions(latitude, longitude)),
     hideSuggestions: () => dispatch(hideSuggestions())
 });
 

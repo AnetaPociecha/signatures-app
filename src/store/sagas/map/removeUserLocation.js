@@ -4,7 +4,6 @@ import {selectToken} from "../../selectors";
 import {removeUserLocation} from "../../../services/map";
 import {successRemovingUserLocation} from "../../actions/map";
 
-
 function* doRemoveUserLocation() {
 
     try {
@@ -15,7 +14,6 @@ function* doRemoveUserLocation() {
     } catch (e) {
         console.log(e)
     }
-
 }
 
 export default function* watchRemoveUserLocation() {

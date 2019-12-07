@@ -7,6 +7,8 @@ import TopBar from "./bars/TopBar";
 
 function Index() {
 
+    const [center, setCenter] = React.useState([50.061687, 19.937306]);
+
     return (
         <div style={{height: '100vh', maxHeight: '100vh', width: '100vw'}} className='bg-light'>
             <TopBar/>
@@ -15,7 +17,7 @@ function Index() {
 
                 <div>
 
-                    <InnerBar/>
+                    <InnerBar location={center}/>
 
                     <div
                         style={{
@@ -25,7 +27,8 @@ function Index() {
                         }}
                     >
                         <ContainerDimensions>
-                            {({width, height}) => <MapModel width={width} height={height}/>}
+                            {({width, height}) => <MapModel width={width} height={height} center={center}
+                                                            setCenter={setCenter}/>}
                         </ContainerDimensions>
                     </div>
 

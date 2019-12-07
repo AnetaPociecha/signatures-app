@@ -4,7 +4,6 @@ import {selectToken} from "../../selectors";
 import {setUserLocation} from "../../../services/map";
 import {successSettingUserLocation} from "../../actions/map";
 
-
 function* doAddUserLocation(action) {
 
     try {
@@ -15,7 +14,6 @@ function* doAddUserLocation(action) {
     } catch (e) {
         console.log(e)
     }
-
 }
 
 export default function* watchAddUserLocation() {

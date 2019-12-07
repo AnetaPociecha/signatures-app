@@ -12,7 +12,8 @@ function SideBar({t, selectedGroup}) {
         <div className='bg-light' style={{minWidth: 300, width: 300, height: 'calc(100vh - 52px)'}}>
 
 
-            {selectedGroup && <div className="p-1 border-light rounded-lg m-3"
+            {selectedGroup && <div
+                className="p-1 border-light rounded-lg m-3"
                  style={{
                      display: 'flex',
                      maxHeight: '95%',

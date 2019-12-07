@@ -25,7 +25,8 @@
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.1.1",
-    "react-i18next": "^11.2.5"
+    "react-i18next": "^11.2.5",
+    "@redux-saga/core": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

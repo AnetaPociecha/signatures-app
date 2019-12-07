@@ -4,7 +4,6 @@ import {withTranslation} from "react-i18next";
 import Radio from '@material-ui/core/Radio';
 import {changeGroup} from "../../../store/actions/group";
 
-
 function Groups({t, allGroups, selectedGroup, changeGroup}) {
 
     const [tmpSelected, setTmpSelected] = React.useState(selectedGroup);
@@ -15,31 +14,32 @@ function Groups({t, allGroups, selectedGroup, changeGroup}) {
                 <div className="modal-content p-4">
 
                     <div>
-                            <div className="font-weight-bold pb-2 border-bottom">
-                                {t('Groups')}
-                            </div>
-
+                        <div className="font-weight-bold pb-2 border-bottom">
+                            {t('Groups')}
+                        </div>
                     </div>
 
                     <div className='pt-2 pb-2'>
 
-                            {allGroups.map(group =>
-                                <div key={group.id}  style={{display: 'flex', alignItems: 'center'}}>
-                                    <div>
-                                        <Radio
-                                            className='m-1 p-0'
-                                            checked={tmpSelected === group}
-                                            onChange={() => {setTmpSelected(group)}}
-                                            value={group.id}
-                                            color="dark"
-                                        />
-                                    </div>
-
-                                    <div className="" style={{color: 'black'}}>
-                                        {group.groupName}
-                                    </div>
+                        {allGroups.map(group =>
+                            <div key={group.id} style={{display: 'flex', alignItems: 'center'}}>
+                                <div>
+                                    <Radio
+                                        className='m-1 p-0'
+                                        checked={tmpSelected === group}
+                                        onChange={() => {
+                                            setTmpSelected(group)
+                                        }}
+                                        value={group.id}
+                                        color="default"
+                                    />
                                 </div>
-                            )}
+
+                                <div className="" style={{color: 'black'}}>
+                                    {group.groupName}
+                                </div>
+                            </div>
+                        )}
 
                     </div>
 
@@ -68,7 +68,6 @@ function Groups({t, allGroups, selectedGroup, changeGroup}) {
                                 {t('SelectGroup')}
                             </button>
                         </div>
-
 
                     </div>
 
