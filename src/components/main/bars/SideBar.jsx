@@ -3,13 +3,16 @@ import {connect} from 'react-redux'
 import {withTranslation} from 'react-i18next';
 import Groups from "./Groups";
 
-function SideBar({colleagues, group, t}) {
+function SideBar({t, selectedGroup}) {
 
-    const activeNumber = colleagues.filter(colleague => colleague.active).length;
+    const active = selectedGroup && selectedGroup.groupMembers.filter(member => member.currentLocation).length;
+    const all = selectedGroup && selectedGroup.groupMembers.length;
 
     return (
         <div className='bg-light' style={{minWidth: 300, width: 300, height: 'calc(100vh - 52px)'}}>
-            <div className="p-1 border-light rounded-lg m-3"
+
+
+            {selectedGroup && <div className="p-1 border-light rounded-lg m-3"
                  style={{
                      display: 'flex',
                      maxHeight: '95%',
@@ -25,7 +28,7 @@ function SideBar({colleagues, group, t}) {
                             {t("Group")}
                         </div>
                         <div className="font-weight-bold" style={{fontSize: '0.9em'}}>
-                            {group}
+                            {selectedGroup.groupName}
                         </div>
                     </div>
 
@@ -34,7 +37,7 @@ function SideBar({colleagues, group, t}) {
                             {t('Colleagues')}
                         </div>
                         <div className='font-weight-bold' style={{fontSize: '0.9em'}}>
-                            {activeNumber}/{colleagues.length}
+                            {active}/{all}
                         </div>
                     </div>
 
@@ -45,19 +48,19 @@ function SideBar({colleagues, group, t}) {
                 </div>
 
 
-                {colleagues && colleagues.map(colleague => (
-                    <div key={colleague.login} className="pt-1 pb-1 mr-2 ml-2 border-top"
+                {selectedGroup.groupMembers.map(member => (
+                    <div key={member.id} className="pt-1 pb-1 mr-2 ml-2 border-top"
                          style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
 
                         <div className='p-1 pr-2' style={{display: 'flex', flexDirection: 'column'}}>
                             <div className='font-weight-bold' style={{fontSize: '0.9em'}}>
-                                {colleague.name}
+                                {member.name} {member.surname}
                             </div>
 
                             <div
                                 style={{fontSize: '0.8em'}}
                             >
-                                {colleague.locationName}
+                                {member.currentLocation && member.currentLocation.name}
                             </div>
                         </div>
 
@@ -69,7 +72,7 @@ function SideBar({colleagues, group, t}) {
                 ))
                 }
 
-            </div>
+            </div>}
 
             <Groups/>
 
@@ -80,8 +83,7 @@ function SideBar({colleagues, group, t}) {
 const mapDispatchToProps = dispatch => ({});
 
 const mapStateToProps = state => ({
-    colleagues: state.map.colleagues,
-    group: state.auth.group
+    selectedGroup: state.group.selectedGroup
 });
 
 
