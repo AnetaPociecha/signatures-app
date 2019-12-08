@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withTranslation} from 'react-i18next';
 import Groups from "./Groups";
 
-function SideBar({t, selectedGroup}) {
+function SideBar({t, selectedGroup, setCenter}) {
 
     const active = selectedGroup && selectedGroup.groupMembers.filter(member => member.currentLocation).length;
     const all = selectedGroup && selectedGroup.groupMembers.length;
@@ -14,13 +14,13 @@ function SideBar({t, selectedGroup}) {
 
             {selectedGroup && <div
                 className="p-1 border-light rounded-lg m-3"
-                 style={{
-                     display: 'flex',
-                     maxHeight: '95%',
-                     overflow: 'auto',
-                     flexDirection: 'column',
-                     backgroundColor: '#f2f2f2'
-                 }}>
+                style={{
+                    display: 'flex',
+                    maxHeight: '95%',
+                    overflow: 'auto',
+                    flexDirection: 'column',
+                    backgroundColor: '#f2f2f2'
+                }}>
 
                 <div className="pt-1 pb-1 mr-2 ml-2 "
                      style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -51,11 +51,15 @@ function SideBar({t, selectedGroup}) {
 
                 {selectedGroup.groupMembers.map(member => (
                     <div key={member.id} className="pt-1 pb-1 mr-2 ml-2 border-top"
-                         style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                         style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}
+                         onClick={console.log('nana')}>
 
                         <div className='p-1 pr-2' style={{display: 'flex', flexDirection: 'column'}}>
                             <div className='font-weight-bold' style={{fontSize: '0.9em'}}>
-                                {member.name} {member.surname}
+                                <p style={{display: 'inline'}}
+                                   onClick={() => setCenter([member.currentLocation.longitude, member.currentLocation.latitude])}>
+                                    {member.name} {member.surname}
+                                </p>
                             </div>
 
                             <div

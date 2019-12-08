@@ -2,9 +2,9 @@ import React from 'react'
 import {connect} from "react-redux";
 import {hideSuggestions, requestFetchingSuggestions, showSuggestions} from "../../../store/actions/map";
 import {Checkbox} from '@material-ui/core';
-import { withTranslation } from 'react-i18next';
+import {withTranslation} from 'react-i18next';
 
-function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSuggestions, t, requestFetchingSuggestions, location}) {
+function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSuggestions, t, requestFetchingSuggestions, location, setCenter}) {
 
     return (
         <nav
@@ -36,7 +36,10 @@ function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSug
                                 {t('YourLocation')}
                             </div>
                             <div className="font-weight-bold" style={{fontSize: '0.9em'}}>
-                                {userLocation.name}
+                                <p style={{display: 'inline'}}
+                                   onClick={() => setCenter(userLocation.latlng)}>
+                                    {userLocation.name}
+                                </p>
                             </div>
                         </React.Fragment>
                         :

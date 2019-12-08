@@ -14,6 +14,13 @@ export function setUserLocation(location, token) {
     //     }, 50);
     // })
 
+    //mock
+    // return new Promise(function (resolve, reject) {
+    //     setTimeout(function () {
+    //         resolve("Test");
+    //     }, 50);
+    // })
+
 
     return axios.get(`https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=${location[0]}%2C${location[1]}%2C250&mode=retrieveAddresses&maxresults=1&gen=9&app_id=${key.appId}&app_code=${key.appCode}`, config)
         .then(function (response) {

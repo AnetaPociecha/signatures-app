@@ -13,11 +13,12 @@ function Index() {
         <div style={{height: '100vh', maxHeight: '100vh', width: '100vw'}} className='bg-light'>
             <TopBar/>
             <div style={{width: '100vw', maxWidth: '100vw', display: 'flex', flexDirection: 'row'}}>
-                <SideBar/>
+
+                <SideBar setCenter={setCenter}/>
 
                 <div>
 
-                    <InnerBar location={center}/>
+                    <InnerBar location={center} setCenter={setCenter}/>
 
                     <div
                         style={{
