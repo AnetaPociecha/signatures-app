@@ -1,7 +1,7 @@
 import {AUTH_SUCCESS, SING_OUT_SUCCESS, AUTH_FAILURE, CANCEL_AUTH_FAILURE} from "../../types/auth"
 
 const initialState = {
-    isAuthenticated: true, // change to false
+    isAuthenticated: false, // change to false
     authError: false,
 
     currentLocation: undefined,

@@ -27,7 +27,8 @@ const mock = [
 ];
 
 export function fetchGroups(userId) {
-    // return axios.post(`https://signmap-backend.herokuapp.com/groups?userID=${userId}`, {}, config)
+
+    // return axios.get(`https://signmap-backend.herokuapp.com/groups?userID=${userId}`, config)
     //     .then(function (response) {
     //         console.log(response);
     //         return response.data

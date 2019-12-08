@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Map, TileLayer, Marker, Popup, Circle, Tooltip, CircleMarker} from "react-leaflet";
+import {Map, TileLayer, Marker, Popup, Circle, Tooltip} from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import {connect} from "react-redux";

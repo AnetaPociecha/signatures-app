@@ -8,6 +8,7 @@ export function signIn(login, password) {
 
     // return axios.post(`https://signmap-backend.herokuapp.com/login?email=${login}&password=${password}`, {}, config)
     //     .then(function (response) {
+    //         // console.log('response')
     //         console.log(response);
     //         return response.data
     //     })
@@ -18,7 +19,7 @@ export function signIn(login, password) {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             resolve(mock);
-        }, 300);
+        }, 50);
     })
 }
 

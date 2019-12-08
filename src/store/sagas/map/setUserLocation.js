@@ -8,8 +8,9 @@ function* doAddUserLocation(action) {
 
     try {
         const token = yield select(selectToken);
-        const location = yield call(setUserLocation, action.location, token);
-        yield put(successSettingUserLocation(location.latlng, location.name));
+        let locationName = yield call(setUserLocation, action.location, token);
+        locationName = `${locationName.charAt(0).toUpperCase()}${locationName.slice(1)}`;
+        yield put(successSettingUserLocation(action.location, locationName));
 
     } catch (e) {
         console.log(e)

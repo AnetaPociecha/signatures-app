@@ -9,6 +9,7 @@ function* doAuth(action) {
     try {
         const authTO = yield call(signIn, action.login, action.password);
         yield put(authSuccess(authTO));
+        console.log(authTO)
         const groupsTO = yield call(fetchGroups, authTO.id);
         yield put(successFetchingGroups(groupsTO));
         yield action.callback();
