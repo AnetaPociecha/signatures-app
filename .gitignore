@@ -24,3 +24,5 @@ yarn-error.log*
 
 .idea/
 desktop.ini
+
+src/services/key
