@@ -6,7 +6,7 @@ const mock = {id: 1, email: 'jankowalski.gmail.com', name: 'Jan', surname:'Kowal
 
 export function signIn(login, password) {
 
-    // return axios.get(`https://signmap-backend.herokuapp.com/login?email=${login}&password=${password}`, config)
+    // return axios.post(`https://signmap-backend.herokuapp.com/login?email=${login}&password=${password}`, {}, config)
     //     .then(function (response) {
     //         console.log('response')
     //         console.log(response);

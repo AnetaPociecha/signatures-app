@@ -36,7 +36,7 @@ function InnerBar({showSuggestions, userLocation, areSuggestionsVisible, hideSug
                                 {t('YourLocation')}
                             </div>
                             <div className="font-weight-bold" style={{fontSize: '0.9em'}}>
-                                <p style={{display: 'inline'}}
+                                <p style={{display: 'inline', cursor: 'pointer'}}
                                    onClick={() => setCenter(userLocation.latlng)}>
                                     {userLocation.name}
                                 </p>

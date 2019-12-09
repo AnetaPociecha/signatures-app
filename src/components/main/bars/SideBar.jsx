@@ -56,10 +56,16 @@ function SideBar({t, selectedGroup, setCenter}) {
 
                         <div className='p-1 pr-2' style={{display: 'flex', flexDirection: 'column'}}>
                             <div className='font-weight-bold' style={{fontSize: '0.9em'}}>
-                                <p style={{display: 'inline'}}
-                                   onClick={() => setCenter([member.currentLocation.longitude, member.currentLocation.latitude])}>
-                                    {member.name} {member.surname}
-                                </p>
+                                {member.currentLocation ?
+                                    <p style={{display: 'inline', cursor: 'pointer'}}
+                                       onClick={() => setCenter([member.currentLocation.longitude, member.currentLocation.latitude])}>
+                                        {member.name} {member.surname}
+                                    </p> :
+                                    <p style={{display: 'inline'}} >
+                                        {member.name} {member.surname}
+                                    </p>
+                                }
+
                             </div>
 
                             <div

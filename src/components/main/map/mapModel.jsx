@@ -45,7 +45,7 @@ function MapModel({userLocation, setUserLocation, removeUserLocation, suggestion
     let ref = undefined;
 
     return (
-        <Map ref={node => ref = node} center={center} zoom={16}
+        <Map ref={node => ref = node} center={center} zoom={18}
              style={{height: height, width: width}} zoomControl={false}
              onClick={e => setUserLocation([e.latlng.lat, e.latlng.lng])}
 
