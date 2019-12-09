@@ -4,15 +4,14 @@ import key from './key/key'
 
 export function setUserLocation(location, token) {
 
-    // //mock
-    // return new Promise(function (resolve, reject) {
-    //     setTimeout(function () {
-    //         resolve({
-    //             latlng: location,
-    //             name: 'Rynek Główny 41, 31-013 Kraków'
-    //         });
-    //     }, 50);
-    // })
+    //mock
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            resolve(
+                'Rynek Główny 41, 31-013 Kraków'
+            );
+        }, 50);
+    })
 
     //mock
     // return new Promise(function (resolve, reject) {
